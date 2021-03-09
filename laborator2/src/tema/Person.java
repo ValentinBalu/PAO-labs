@@ -59,4 +59,13 @@ public class Person {
         this.type = type;
     }
 
+    public String toString(){
+        return "Person("+
+                "name "+name+
+                ", surname "+ surname +'\''+
+                ", age " +age + '\''+
+                ", identityNumber " +identityNumber + '\''+
+                ", type " +type + '\''+
+                "}";
+    }
 }

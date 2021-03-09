@@ -27,6 +27,7 @@ public class Highschool {
         Person p2 = new Person("Salaujeanu","Mariana",34,987654321,"Vanzatoare");
         System.out.println("Prima persoana se numeste " + p1.getName() + " "+ p1.getSurname()+". Are varsta de " + p1.getAge() + " de ani. Codul de identitate este "+p1.getIdentityNumber()+", iar tipul este de "+p1.getType()+".");
         System.out.println("A doua persoana se numeste " + p2.getName() + " "+ p2.getSurname()+". Are varsta de " + p2.getAge() + " de ani. Codul de identitate este "+p2.getIdentityNumber()+", iar tipul este de "+p2.getType()+".");
+        System.out.println(p1);
         System.out.println();
 
         //2
@@ -34,6 +35,7 @@ public class Highschool {
         Room r2 = new Room(56,"Apartment",5);
         System.out.println("Camera cu numarul "+r1.getRoomNumber()+ ", de la etajul "+r1.getRoomFloor()+", este de tipul "+r1.getRoomType()+".");
         System.out.println("Camera cu numarul "+r2.getRoomNumber()+ ", de la etajul "+r2.getRoomFloor()+", este de tipul "+r2.getRoomType()+".");
+        System.out.println(r1);
         System.out.println();
 
         //3
@@ -46,6 +48,9 @@ public class Highschool {
         Room rr = new Room(61,"Laborator de Fizica",6);
         Subject ss = new Subject(rr,29,pp);
         System.out.println("Materia 2 este predata de "+ss.getTeacher().getName()+" " +ss.getTeacher().getSurname()+". Are varsta de "+ss.getTeacher().getAge()+" de ani. Codul de indentitate este "+ss.getTeacher().getIdentityNumber()+" si are statutul de "+ss.getTeacher().getType()+". Se desfasoara in camera cu numarul "+ss.getRoom().getRoomNumber()+" de la etajul "+ss.getRoom().getRoomFloor()+", de tipul "+ss.getRoom().getRoomType()+". Are un numar de "+ ss.getNoOfStudents()+" studenti.");
+        System.out.println();
+
+        System.out.println(s);
         System.out.println();
 
         //4

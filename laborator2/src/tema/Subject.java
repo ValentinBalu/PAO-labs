@@ -36,4 +36,12 @@ public class Subject {
     public void setRoom(Room room) {
         this.room = room;
     }
+
+    public String toString(){
+        return "Subject("+
+                "person "+teacher+
+                ", room "+ room +'\''+
+                ", noOfStudents " +noOfStudents + '\''+
+                "}";
+    }
 }

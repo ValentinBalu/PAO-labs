@@ -37,4 +37,11 @@ public class Room {
         this.roomFloor = roomFloor;
     }
 
+    public String toString(){
+        return "Room("+
+                "RoomNumber "+roomNumber+
+                ", roomFloor "+ roomFloor +'\''+
+                ", roomType " +roomType + '\''+
+                "}";
+    }
 }
