@@ -34,19 +34,10 @@ public class Area {
 
     public void printAddress(){
         System.out.println("The Area nr "+this.getNumber()+" is located on the street "+this.getStreet());
-        System.out.println("The variety of boxes are :");
-        System.out.println("Merci:");
+        System.out.println("The variety of boxes is :");
 
-        for(Merci m : candybag.getMercis()){
-            System.out.println(m.toString()+" ");
-        }
-        System.out.println("Milka:");
-        for(Milka mil : candybag.getMilkas()){
-            System.out.println(mil.toString()+" ");
-        }
-        System.out.println("Lindt:");
-        for(Lindt l : candybag.getLindts()){
-            System.out.println(l.toString()+" ");
+        for(CandyBox c : candybag.getCandyBox()){
+            System.out.println(c.toString()+" ");
         }
     }
     public static void main(String[] args){
@@ -62,10 +53,13 @@ public class Area {
         Milka mi1 = new Milka("cacao" , "danez",9.8,17.1);
         Milka[] mis = new Milka[]{mi1};
 
-        CandyBag candybag = new CandyBag(m,l,mis);
+        CandyBox[] candyBox = new CandyBox[]{m1,m2,m3,l1,l2,mi1};
+
+        CandyBag candybag = new CandyBag(candyBox);
 
         Area area = new Area(candybag,78,"Str. Ion Bratianu");
 
         area.printAddress();
+
     }
 }

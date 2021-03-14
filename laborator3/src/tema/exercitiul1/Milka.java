@@ -1,4 +1,7 @@
 package tema.exercitiul1;
+
+import java.util.Objects;
+
 //b
 public class Milka extends CandyBox{
     private double radius;
@@ -36,10 +39,27 @@ public class Milka extends CandyBox{
     }
     @Override
     public String toString(){
-        return "The "+origin+" "+flavour+" has volume of "+getVolume();
+        return "This is a box of Milka. Its origin is "+origin+" with the flavour of "+flavour+" and it has a volume of "+getVolume();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Milka)) return false;
+        Milka milka = (Milka) o;
+        return Double.compare(milka.getRadius(), getRadius()) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getRadius());
+    }
+
     public static void main(String[] args){
         Milka mi = new Milka("banane","frantuzesc",4.6,8.12);
         System.out.println(mi.toString());
+
+        Milka miTest = new Milka("zmeura","bulgaresc",4.6,14.67);
+        System.out.println(mi.equals(miTest));
     }
 }

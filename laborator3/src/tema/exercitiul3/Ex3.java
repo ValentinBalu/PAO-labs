@@ -2,7 +2,7 @@ package tema.exercitiul3;
 import java.util.Arrays;
 import java.util.Scanner;
 public class Ex3 {
-    public static String StringSort(String txt){
+    public static String stringSort(String txt){
         char[] tmp = txt.toCharArray();
         Arrays.sort(tmp);
         return new String(tmp);
@@ -17,8 +17,8 @@ public class Ex3 {
         System.out.println("Read the second string for ex3 : ");
         String cuvant2 = scanner.nextLine();
 
-        String c1 = StringSort(cuvant1);
-        String c2 = StringSort(cuvant2);
+        String c1 = stringSort(cuvant1);
+        String c2 = stringSort(cuvant2);
 
         if(c1.equals(c2)){
             System.out.println("The two words are anagrams!");

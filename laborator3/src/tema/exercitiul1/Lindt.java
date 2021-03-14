@@ -1,4 +1,7 @@
 package tema.exercitiul1;
+
+import java.util.Objects;
+
 //a
 public class Lindt extends CandyBox{
 
@@ -48,10 +51,27 @@ public class Lindt extends CandyBox{
     }
     @Override
     public String toString(){
-        return "The "+origin+" "+flavour+" has volume of "+getVolume();
+        return "This is a box of Lindt. Its origin is "+origin+" with the flavour of "+flavour+" and it has a volume of "+getVolume();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Lindt)) return false;
+        Lindt lindt = (Lindt) o;
+        return Double.compare(lindt.getLength(), getLength()) == 0 && Double.compare(lindt.getHeight(), getHeight()) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getLength(), getHeight());
     }
     public static void main(String[] args){
         Lindt l = new Lindt("capsuni","german",12,5.6,3.1);
         System.out.println(l.toString());
+
+        Lindt lTest = new Lindt("vanilie","danez",11,7.17,3.1);
+        System.out.println(l.equals(lTest));
     }
+
 }

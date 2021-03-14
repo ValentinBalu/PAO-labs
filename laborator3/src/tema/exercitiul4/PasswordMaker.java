@@ -15,15 +15,15 @@ public class PasswordMaker {
 
     public static String generateString(int n){
 
-        String Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 + "abcdefghijklmnopqrstuvxyz";
 
         StringBuilder tmp = new StringBuilder(n);
 
         for (int i = 0; i < n; i++) {
-            int index = (int)(Alphabet.length() * Math.random());
+            int index = (int)(alphabet.length() * Math.random());
 
-            tmp.append(Alphabet.charAt(index));
+            tmp.append(alphabet.charAt(index));
         }
 
         return tmp.toString();
@@ -57,7 +57,7 @@ public class PasswordMaker {
         String password = new String(p1+p2+p3+p4);
         return password;
     }
-    public static void main(String[] args){
+    public static void main(String[] args) {
         PasswordMaker p = new PasswordMaker("Stanciulescu");
         System.out.println(p.getPassword());
     }
