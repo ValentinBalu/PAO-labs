@@ -1,5 +1,9 @@
 package tema.ex1;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Random;
+import java.util.Arrays;
+import java.util.concurrent.atomic.AtomicBoolean;
 //a
 
 class OutTask implements Task{
@@ -82,5 +86,32 @@ public class Container{
 
         CounterOutTask c1 = new CounterOutTask();
         CounterOutTask c2 = new CounterOutTask();
+
+        ArrayList<Task> tasks = new ArrayList<Task>();
+        tasks.add(t1);
+        tasks.add(r1);
+        tasks.add(c1);
+        tasks.add(c2);
+
+        OutTask t2 = new OutTask("mesajul pentru outTask-ul 2");
+        RandomTask r2 = new RandomTask();
+        CounterOutTask c3 = new CounterOutTask();
+
+        tasks.add(t2);
+        tasks.add(r2);
+        tasks.add(c3);
+
+        System.out.println("Elements from Array:");
+        for(Task task : tasks){
+            task.execute();
+        }
+
+        tasks.remove(t1);
+        tasks.remove(r1);
+
+        System.out.println("Elements from Array:");
+        for(Task task : tasks){
+            task.execute();
+        }
     }
 }
