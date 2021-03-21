@@ -1,0 +1,52 @@
+Pentru a modela tema "programare cabinet medical" am implementat urmatoarele clase:
+
+-Client
+-Adult(care extinde clasa Client)
+-Copil(care extinde clasa Client)
+-Medic
+-Cardiolog(care extinde clasa Medic)
+-Oftalmolog(care extinde clasa Medic)
+-Programare
+-NumeComparator(care implementeaza Comparator<Client> pentru a realiza sortarea)
+-MedicService
+-ClientService
+-ProgramareService
+(clasele serviciu pentru a modela serviciile disponibile pentru cele 3 tipuri de obiecte)
+-Main(de unde sunt facute apelurile catre servicii)
+
+Cateva actiuni disponibile in cadrul sistemului(apelate din clasele serviciu) ar fi:
+
+-MedicService.afisareListMedici(ListaMedici);
+
+-MedicService.afisareListaMediciSpecialitate(ListaMedici,specialitatea);
+
+-ListaMedici = MedicService.adaugareMedic(ListaMedici);
+ MedicService.afisareListMedici(ListaMedici);
+
+-ListaMedici = MedicService.eliminareMedic(ListaMedici);
+ MedicService.afisareListMedici(ListaMedici);
+
+-ClientService.afisareListaClienti(ListaClienti);
+
+-ClientService.afisareListaCopii(ListaClienti);
+
+-ClientService.afisareListaAdulti(ListaClienti);
+
+-ListaClienti = ClientService.adaugareClient(ListaClienti);
+ ClientService.afisareListaClienti(ListaClienti);
+
+-ListaClienti = ClientService.editareVarstaClient(ListaClienti);
+ ClientService.afisareListaClienti(ListaClienti);
+
+-ProgramareService.afisareListaProgramari(ListaProgramari);
+
+-ListaProgramari = ProgramareService.adaugareProgramare(ListaProgramari);
+ ProgramareService.afisareListaProgramari(ListaProgramari);
+
+-ListaProgramari = ProgramareService.editareProgramare(ListaProgramari);
+ ProgramareService.afisareListaProgramari(ListaProgramari);
+
+-ListaProgramari = ProgramareService.eliminareProgramare(ListaProgramari);
+ ProgramareService.afisareListaProgramari(ListaProgramari);
+
+-Arrays.sort(ListaClienti,numeComparator);
