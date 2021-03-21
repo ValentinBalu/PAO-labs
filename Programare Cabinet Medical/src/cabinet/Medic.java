@@ -2,7 +2,7 @@ package cabinet;
 
 import java.util.Objects;
 
-public class Medic {
+public class Medic implements Comparable<Medic> {
     private String nume;
 
     private int varsta;
@@ -73,5 +73,18 @@ public class Medic {
                 " ani, are specialitatea de " + specialitate  +
                 " si lucreaza in tura " + tura  +
                 '.';
+    }
+
+    @Override
+    public int compareTo(Medic medic) {
+        /*
+        * Returns:
+        * - positive integer, if the current object is greater than the
+        specified object.
+        * - negative integer, if the current object is less than the
+        specified object.
+        * - zero, if the current object is equal to the specified object.
+        */
+        return this.varsta - medic.varsta;
     }
 }
