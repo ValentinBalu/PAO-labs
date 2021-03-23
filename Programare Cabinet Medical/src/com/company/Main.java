@@ -10,81 +10,82 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void medicService(Medic[] ListaMedici){
+    public static void medicService(Medic[] listaMedici){
         MedicService.afisareMeniu();
         Scanner scannerul = new Scanner(System.in);
         System.out.println();
         System.out.println("Alegeti o optiune :");
         int op = scannerul.nextInt();
         if(op==1){
-            MedicService.afisareListMedici(ListaMedici);
+            MedicService.afisareListMedici(listaMedici);
         }else if(op==2){
             System.out.println("Introduceti denumirea specialitatii : ");
             String specialitatea = scannerul.next();
-            MedicService.afisareListaMediciSpecialitate(ListaMedici,specialitatea);
+            MedicService.afisareListaMediciSpecialitate(listaMedici,specialitatea);
         }else if (op == 3){
-            ListaMedici = MedicService.adaugareMedic(ListaMedici);
-            MedicService.afisareListMedici(ListaMedici);
+            listaMedici = MedicService.adaugareMedic(listaMedici);
+            MedicService.afisareListMedici(listaMedici);
         }else if(op == 4) {
-            ListaMedici = MedicService.eliminareMedic(ListaMedici);
-            MedicService.afisareListMedici(ListaMedici);
+            listaMedici = MedicService.eliminareMedic(listaMedici);
+            MedicService.afisareListMedici(listaMedici);
         } else{
             System.out.println("Introduceti o optiune valida!");
-            medicService(ListaMedici);
+            medicService(listaMedici);
         }
         System.out.println();
 
     }
 
-    public static void clientService(Client[] ListaClienti){
+    public static void clientService(Client[] listaClienti){
         ClientService.afisareMeniu();
         Scanner scannerul = new Scanner(System.in);
         System.out.println();
         System.out.println("Alegeti o optiune :");
         int op = scannerul.nextInt();
         if(op==1){
-            ClientService.afisareListaClienti(ListaClienti);
+            ClientService.afisareListaClienti(listaClienti);
         }else if(op==2){
-            ClientService.afisareListaCopii(ListaClienti);
+            ClientService.afisareListaCopii(listaClienti);
         }else if (op == 3){
-            ClientService.afisareListaAdulti(ListaClienti);
+            ClientService.afisareListaAdulti(listaClienti);
         }else if(op == 4) {
-            ListaClienti = ClientService.adaugareClient(ListaClienti);
-            ClientService.afisareListaClienti(ListaClienti);
+            listaClienti = ClientService.adaugareClient(listaClienti);
+            ClientService.afisareListaClienti(listaClienti);
         }else if(op == 5) {
-            ListaClienti = ClientService.editareVarstaClient(ListaClienti);
-            ClientService.afisareListaClienti(ListaClienti);
+            listaClienti = ClientService.editareVarstaClient(listaClienti);
+            ClientService.afisareListaClienti(listaClienti);
         }else {
             System.out.println("Introduceti o optiune valida!");
-            clientService(ListaClienti);
+            clientService(listaClienti);
         }
         System.out.println();
 
     }
 
-    public static void programareService(Programare[] ListaProgramari){
+    public static void programareService(Programare[] listaProgramari){
         ProgramareService.afisareMeniu();
         Scanner scannerul = new Scanner(System.in);
         System.out.println();
         System.out.println("Alegeti o optiune :");
         int op = scannerul.nextInt();
         if(op==1){
-            ProgramareService.afisareListaProgramari(ListaProgramari);
+            ProgramareService.afisareListaProgramari(listaProgramari);
         }else if(op==2){
-            ListaProgramari = ProgramareService.adaugareProgramare(ListaProgramari);
-            ProgramareService.afisareListaProgramari(ListaProgramari);
+            listaProgramari = ProgramareService.adaugareProgramare(listaProgramari);
+            ProgramareService.afisareListaProgramari(listaProgramari);
         }else if (op == 3){
-            ListaProgramari = ProgramareService.editareProgramare(ListaProgramari);
-            ProgramareService.afisareListaProgramari(ListaProgramari);
+            listaProgramari = ProgramareService.editareProgramare(listaProgramari);
+            ProgramareService.afisareListaProgramari(listaProgramari);
         }else if(op == 4) {
-            ListaProgramari = ProgramareService.eliminareProgramare(ListaProgramari);
-            ProgramareService.afisareListaProgramari(ListaProgramari);
+            listaProgramari = ProgramareService.eliminareProgramare(listaProgramari);
+            ProgramareService.afisareListaProgramari(listaProgramari);
         } else{
             System.out.println("Introduceti o optiune valida!");
-            programareService(ListaProgramari);
+            programareService(listaProgramari);
         }
         System.out.println();
     }
+
     public static int optiune(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Ce servicii doriti sa utilizati?");
@@ -125,46 +126,46 @@ public class Main {
         Programare programare2 = new Programare("Ana Balutoiu","29/04/2021","14:50","oftalmologie","Andrei Zuhalcescu",200);
         //System.out.println(programare2.toString());
 
-        Client[] ListaClienti = new Client[]{client1,copil1,adult1};
+        Client[] listaClienti = new Client[]{client1,copil1,adult1};
         //sortare array clienti folosind NumeComparator
         System.out.println("Lista Clientilor inainte de sortare : ");
-        for(Client client : ListaClienti){
+        for(Client client : listaClienti){
             System.out.println(client.toString());
         }
         System.out.println();
         NumeComparator numeComparator = new NumeComparator();
-        Arrays.sort(ListaClienti,numeComparator);
+        Arrays.sort(listaClienti,numeComparator);
         System.out.println("Lista Clientilor dupa sortare : ");
-        for(Client client : ListaClienti){
+        for(Client client : listaClienti){
             System.out.println(client.toString());
         }
         System.out.println();
 
-        Medic[] ListaMedici = new Medic[]{medic1,oftalmolog1,cardiolog1,cardiolog2};
+        Medic[] listaMedici = new Medic[]{medic1,oftalmolog1,cardiolog1,cardiolog2};
 
         //sortare array medici folosind comparable
         System.out.println("Lista Medicilor inainte de sortare : ");
-        for(Medic medic : ListaMedici){
+        for(Medic medic : listaMedici){
             System.out.println(medic.toString());
         }
         System.out.println();
-        Arrays.sort(ListaMedici);
+        Arrays.sort(listaMedici);
         System.out.println("Lista Medicilor dupa sortare : ");
-        for(Medic medic : ListaMedici){
+        for(Medic medic : listaMedici){
             System.out.println(medic.toString());
         }
         System.out.println();
 
-        Programare[] ListaProgramari = new Programare[]{programare1,programare2};
+        Programare[] listaProgramari = new Programare[]{programare1,programare2};
 
         //Handling services
         int op = optiune();
         if(op==1){
-            medicService(ListaMedici);
+            medicService(listaMedici);
         }else if(op==2 ){
-            clientService(ListaClienti);
+            clientService(listaClienti);
         }else if(op==3){
-            programareService(ListaProgramari);
+            programareService(listaProgramari);
         }else{
             System.out.println("Introduceti o optiune valida");
         }

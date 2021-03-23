@@ -5,6 +5,7 @@ import java.util.concurrent.LinkedBlockingDeque;
 
 
 public class MedicService {
+
     public static void afisareMeniu(){
         System.out.println("Lista serviciilor pentru categoria medic : ");
         System.out.println("1.Afisare Lista tuturor Medicilor");
@@ -12,28 +13,32 @@ public class MedicService {
         System.out.println("3.Adaugare Medic");
         System.out.println("4.Eliminare Medic");
     }
-    public static void afisareListMedici(Medic[] ListaMedici){
+
+    public static void afisareListMedici(Medic[] listaMedici){
         System.out.println("Lista tuturor Medicilor este :");
-        for (Medic medic : ListaMedici){
+        for (Medic medic : listaMedici){
             System.out.println(medic.toString());
         }
     }
-    public static void afisareListaMediciSpecialitate(Medic[] ListaMedici, String specialitate){
+
+    public static void afisareListaMediciSpecialitate(Medic[] listaMedici, String specialitate){
         System.out.println("Lista Medicilor cu specialitatea "+specialitate +" :");
-        for(Medic medic : ListaMedici){
+        for(Medic medic : listaMedici){
             if(medic.getSpecialitate().equals(specialitate)){
                 System.out.println(medic.toString());
             }
         }
     }
-    public static Medic[] addMedic(Medic[] ListaMedici,Medic medic){
-        Medic[] newListaMedici = new Medic[ListaMedici.length+1];
-        for(int i =0;i <ListaMedici.length;i++)
-            newListaMedici[i] = ListaMedici[i];
-        newListaMedici[ListaMedici.length] = medic;
+
+    public static Medic[] addMedic(Medic[] listaMedici,Medic medic){
+        Medic[] newListaMedici = new Medic[listaMedici.length+1];
+        for(int i =0;i <listaMedici.length;i++)
+            newListaMedici[i] = listaMedici[i];
+        newListaMedici[listaMedici.length] = medic;
         return newListaMedici;
     }
-    public static Medic[] adaugareMedic(Medic[]ListaMedici){
+
+    public static Medic[] adaugareMedic(Medic[]listaMedici){
         System.out.println("Adaugare Medic :");
         Scanner scanner = new Scanner(System.in);
         System.out.println("Intrduceti numele :");
@@ -47,34 +52,35 @@ public class MedicService {
         Medic medic = new Medic(nume,varsta,specialitate,tura);
         System.out.println(medic.toString());
         //adaug medicul
-        Medic[] nouListaMedici = addMedic(ListaMedici,medic);
+        Medic[] nouListaMedici = addMedic(listaMedici,medic);
         return nouListaMedici;
     }
-    public static Medic[] eliminareMedic(Medic[]ListaMedici){
-        Medic[] nouListaMedici = new Medic[ListaMedici.length-1];
+
+    public static Medic[] eliminareMedic(Medic[]listaMedici){
+        Medic[] nouListaMedici = new Medic[listaMedici.length-1];
         Scanner scanner1 = new Scanner(System.in);
         System.out.println("Introduceti numele medicului pe care doriti sa il eliminati :");
         String nume = scanner1.nextLine();
-        System.out.println(nume);
-        int index = 0;
+        int index = -1;
         int ok = 1;
-        for(int i=0 ;i < ListaMedici.length;i++){
-            if(ListaMedici[i].getNume().equals(nume)){
+        for(int i=0 ;i < listaMedici.length;i++){
+            if(listaMedici[i].getNume().equals(nume)){
                 index = i;
                 break;
             }
+        }
+        if(index == -1){
             ok = 0;
         }
         if(ok == 0){
             System.out.println("Nu s-a gasit acest medic!");
-            return ListaMedici;
+            return listaMedici;
         }else {
-            for (int i = 0, j = 0; i < ListaMedici.length; i++) {
+            for (int i = 0, j = 0; i < listaMedici.length; i++) {
                 if (i != index) {
-                    nouListaMedici[j++] = ListaMedici[i];
+                    nouListaMedici[j++] = listaMedici[i];
                 }
             }
-            System.out.println(nume);
             return nouListaMedici;
         }
     }

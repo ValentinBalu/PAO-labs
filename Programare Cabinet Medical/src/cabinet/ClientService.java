@@ -1,9 +1,12 @@
 package cabinet;
 
+import com.sun.jdi.event.ClassUnloadEvent;
+
 import javax.sound.midi.Soundbank;
 import java.util.Scanner;
 
 public class ClientService {
+
     public static void afisareMeniu(){
         System.out.println("Lista serviciilor pentru categoria client : ");
         System.out.println("1.Afisare Lista tuturor Clientilor");
@@ -12,36 +15,41 @@ public class ClientService {
         System.out.println("4.Adaugare Client");
         System.out.println("5.Editare varsta Client");
     }
-    public static void afisareListaClienti(Client[] ListaClienti){
+
+    public static void afisareListaClienti(Client[] listaClienti){
         System.out.println("Lista tuturor Clientilor este :");
-        for (Client client : ListaClienti){
+        for (Client client : listaClienti){
             System.out.println(client.toString());
         }
     }
-    public static void afisareListaCopii(Client[] ListaClienti){
+
+    public static void afisareListaCopii(Client[] listaClienti){
             System.out.println("Lista Clientilor Copii : ");
-        for (Client client : ListaClienti){
+        for (Client client : listaClienti){
             if(client.getClass().equals(Copil.class)){
                 System.out.println(client.toString());
             }
         }
     }
-    public static void afisareListaAdulti(Client[] ListaClienti){
+
+    public static void afisareListaAdulti(Client[] listaClienti){
         System.out.println("Lista Clientilor Adulti : ");
-        for (Client client : ListaClienti){
+        for (Client client : listaClienti){
             if(client.getClass().equals(Adult.class)){
                 System.out.println(client.toString());
             }
         }
     }
-    public static Client[] addClient(Client[] ListaClienti,Client client){
-        Client[] newListaClienti = new Client[ListaClienti.length+1];
-        for(int i =0;i <ListaClienti.length;i++)
-            newListaClienti[i] = ListaClienti[i];
-        newListaClienti[ListaClienti.length] = client;
+
+    public static Client[] addClient(Client[] listaClienti,Client client){
+        Client[] newListaClienti = new Client[listaClienti.length+1];
+        for(int i =0;i <listaClienti.length;i++)
+            newListaClienti[i] = listaClienti[i];
+        newListaClienti[listaClienti.length] = client;
         return newListaClienti;
     }
-    public static Client[] adaugareClient(Client[]ListClienti){
+
+    public static Client[] adaugareClient(Client[]listaClienti){
         System.out.println("Adaugare Client :");
         Scanner scanner = new Scanner(System.in);
         System.out.println("Intrduceti numele :");
@@ -64,14 +72,15 @@ public class ClientService {
         Client client = new Client(nume,cnp,varsta,sex1,simptome);
         System.out.println(client.toString());
         //adaug clientul
-        Client[] nouListaCleinti= addClient(ListClienti,client);
+        Client[] nouListaCleinti= addClient(listaClienti,client);
         return nouListaCleinti;
     }
-    public static Client[] editareVarstaClient(Client[]ListaClienti){
+
+    public static Client[] editareVarstaClient(Client[]listaClienti){
         System.out.println("Introduceti CNP-ul persoanei careia doriti sa ii modificati varsta :");
         Scanner scanner =  new Scanner(System.in);
         String cnp = scanner.nextLine();
-        for(Client client : ListaClienti){
+        for(Client client : listaClienti){
             if(client.getCnp().equals(cnp)){
                 System.out.println("Introduceti noua varsta :");
                 int varsta = scanner.nextInt();
@@ -79,6 +88,6 @@ public class ClientService {
                 break;
             }
         }
-        return ListaClienti;
+        return listaClienti;
     }
 }
