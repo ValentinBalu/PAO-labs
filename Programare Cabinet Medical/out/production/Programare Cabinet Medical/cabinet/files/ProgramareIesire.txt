@@ -1,0 +1,5 @@
+programarea 1 : Programarea facuta de Cristian Popescu, din data de 12/3/2021, la ora 15:23, pentru specialitatea cardiologie, la medicul Marius Zaharia, are costul de 150.0 de lei.
+programarea 2 : Programarea facuta de Ana Balutoiu, din data de 29/04/2021, la ora 14:50, pentru specialitatea oftalmologie, la medicul Andrei Zuhalcescu, are costul de 200.0 de lei.
+programarea 3 : Programarea facuta de Alex Radoi, din data de 9/3/2021, la ora 15:40, pentru specialitatea cardiologie, la medicul Marius Zaharia, are costul de 150.0 de lei.
+programarea 4 : Programarea facuta de Maria Badescu, din data de 23/4/2021, la ora 11:20, pentru specialitatea generala, la medicul Ana Brailoiu, are costul de 200.0 de lei.
+programarea 5 : Programarea facuta de Giacomo Runceanu, din data de 17/11/2021, la ora 17:20, pentru specialitatea endocrinologie, la medicul Denis Stamatescu, are costul de 175.0 de lei.

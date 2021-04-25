@@ -1,0 +1,3 @@
+Alex Radoi,5987612345612,45,M,tuse puternica,dureri in gat
+Maria Badescu,6812312980087,23,F,dureri de burta,migrene
+Giacomo Runceanu,2001456782990,41,M,discomfort dorsal,dureri articulare

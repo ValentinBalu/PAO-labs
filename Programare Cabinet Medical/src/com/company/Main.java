@@ -1,36 +1,38 @@
 package com.company;
 
 import cabinet.*;
+import cabinet.exceptions.FileWritingException;
+import cabinet.readwriteservice.ReadService;
+import cabinet.readwriteservice.WriteService;
 
+import javax.sound.sampled.Port;
 import javax.swing.plaf.basic.BasicRadioButtonMenuItemUI;
 import java.lang.ref.Cleaner;
-import java.util.Arrays;
-import java.util.OptionalDouble;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
-    public static void medicService(Medic[] listaMedici){
+    public static void medicService(ArrayList<Medic> medicArrayList){
         MedicService.afisareMeniu();
         Scanner scannerul = new Scanner(System.in);
         System.out.println();
         System.out.println("Alegeti o optiune :");
         int op = scannerul.nextInt();
         if(op==1){
-            MedicService.afisareListMedici(listaMedici);
+            MedicService.afisareListMedici(medicArrayList);
         }else if(op==2){
             System.out.println("Introduceti denumirea specialitatii : ");
             String specialitatea = scannerul.next();
-            MedicService.afisareListaMediciSpecialitate(listaMedici,specialitatea);
+            MedicService.afisareListaMediciSpecialitate(medicArrayList,specialitatea);
         }else if (op == 3){
-            listaMedici = MedicService.adaugareMedic(listaMedici);
-            MedicService.afisareListMedici(listaMedici);
+            medicArrayList = MedicService.adaugareMedic(medicArrayList);
+            MedicService.afisareListMedici(medicArrayList);
         }else if(op == 4) {
-            listaMedici = MedicService.eliminareMedic(listaMedici);
-            MedicService.afisareListMedici(listaMedici);
+            medicArrayList = MedicService.eliminareMedic(medicArrayList);
+            MedicService.afisareListMedici(medicArrayList);
         } else{
             System.out.println("Introduceti o optiune valida!");
-            medicService(listaMedici);
+            medicService(medicArrayList);
         }
         System.out.println();
 
@@ -62,26 +64,26 @@ public class Main {
 
     }
 
-    public static void programareService(Programare[] listaProgramari){
+    public static void programareService(Map<Integer, Programare>programariHashMap){
         ProgramareService.afisareMeniu();
         Scanner scannerul = new Scanner(System.in);
         System.out.println();
         System.out.println("Alegeti o optiune :");
         int op = scannerul.nextInt();
         if(op==1){
-            ProgramareService.afisareListaProgramari(listaProgramari);
+            ProgramareService.afisareListaProgramari(programariHashMap);
         }else if(op==2){
-            listaProgramari = ProgramareService.adaugareProgramare(listaProgramari);
-            ProgramareService.afisareListaProgramari(listaProgramari);
+            programariHashMap = ProgramareService.adaugareProgramare(programariHashMap);
+            ProgramareService.afisareListaProgramari(programariHashMap);
         }else if (op == 3){
-            listaProgramari = ProgramareService.editareProgramare(listaProgramari);
-            ProgramareService.afisareListaProgramari(listaProgramari);
+            programariHashMap = ProgramareService.editareProgramare(programariHashMap);
+            ProgramareService.afisareListaProgramari(programariHashMap);
         }else if(op == 4) {
-            listaProgramari = ProgramareService.eliminareProgramare(listaProgramari);
-            ProgramareService.afisareListaProgramari(listaProgramari);
+            programariHashMap = ProgramareService.eliminareProgramare(programariHashMap);
+            ProgramareService.afisareListaProgramari(programariHashMap);
         } else{
             System.out.println("Introduceti o optiune valida!");
-            programareService(listaProgramari);
+            programareService(programariHashMap);
         }
         System.out.println();
     }
@@ -97,7 +99,7 @@ public class Main {
         return op;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileWritingException {
         System.out.println("Hello from proiect, Valentine!");
         Client client1 = new Client("Ion Popescu","5001122345678",34,'M',new String[]{"nas indufndat" , "tuse productiva"});
         //System.out.println(client1.toString());
@@ -111,7 +113,7 @@ public class Main {
         Medic medic1 = new Medic("Ioana Manoiu",56,"ORL",2);
         //System.out.println(medic1.toString());
 
-        Oftalmolog oftalmolog1 = new Oftalmolog("Andrei Zuhalcescu", 45 , "oftalmologie",2,"ochi",45,Boolean.TRUE);
+        Oftalmolog oftalmolog1 = new Oftalmolog("Andrei Zuhalcescu", 45 , "oftalmologie",2,"ochi",45,true);
         //System.out.println(oftalmolog1.toString());
 
         Cardiolog cardiolog1 = new Cardiolog("Marius Zaharia",61,"cardiologie",1,"inima",60, (short)198);
@@ -126,7 +128,13 @@ public class Main {
         Programare programare2 = new Programare("Ana Balutoiu","29/04/2021","14:50","oftalmologie","Andrei Zuhalcescu",200);
         //System.out.println(programare2.toString());
 
+        //CLIENT
+
+        //dupa ce formez lista de clienti intializati in main, ii adauga si pe cei din fisier
         Client[] listaClienti = new Client[]{client1,copil1,adult1};
+        listaClienti = ReadService.readClient(listaClienti);
+
+
         //sortare array clienti folosind NumeComparator
         System.out.println("Lista Clientilor inainte de sortare : ");
         for(Client client : listaClienti){
@@ -141,31 +149,72 @@ public class Main {
         }
         System.out.println();
 
-        Medic[] listaMedici = new Medic[]{medic1,oftalmolog1,cardiolog1,cardiolog2};
+        //scriu datele clientilor in fisier
+        WriteService.writeClient(listaClienti,false);
 
-        //sortare array medici folosind comparable
+        //MEDIC
+
+        ArrayList<Medic> medicArrayList = new ArrayList<>();
+        medicArrayList.add(medic1);
+        medicArrayList.add(oftalmolog1);
+        medicArrayList.add(cardiolog1);
+        medicArrayList.add(cardiolog2);
+
+        //dupa ce aduag medicii initializati in main, ii adaug si pe cei din fisier
+        medicArrayList = ReadService.readMedic(medicArrayList);
+
+        //ulterior adaug si oftalmologii cititi din fisier in arraylist ul de medici
+        medicArrayList = ReadService.readMedicOftalmolog(medicArrayList);
+
+
+        //sortare array medici folosind collections sort
         System.out.println("Lista Medicilor inainte de sortare : ");
-        for(Medic medic : listaMedici){
-            System.out.println(medic.toString());
+        for (Medic medic : medicArrayList) {
+            System.out.println(medic);
         }
+
         System.out.println();
-        Arrays.sort(listaMedici);
+        Collections.sort(medicArrayList, new Comparator<Medic>() {
+            @Override
+            public int compare(Medic o1, Medic o2) {
+                return o1.getVarsta()-o2.getVarsta();
+            }
+        });
+
         System.out.println("Lista Medicilor dupa sortare : ");
-        for(Medic medic : listaMedici){
+        for(Medic medic : medicArrayList){
             System.out.println(medic.toString());
         }
         System.out.println();
 
-        Programare[] listaProgramari = new Programare[]{programare1,programare2};
+        //scriu datele medicilor in fisier
+        WriteService.writeMedic(medicArrayList,false);
+
+        //scriu datele oftalmologilor in fisier
+        WriteService.writeMedicOftalmolog(medicArrayList,false);
+
+        //PROGRAMARE
+
+        Map<Integer,Programare> programariHashMap = new HashMap<>();
+
+        programariHashMap.put(1,programare1);
+        programariHashMap.put(2,programare2);
+
+        //dupa ce adaug programarile initializate in main, le adaug si pe cele citite din fisier
+        programariHashMap = ReadService.readProgramare(programariHashMap);
+
+        //scriu datele programarilor in fisier
+        WriteService.writeProgramare(programariHashMap,false);
+
 
         //Handling services
         int op = optiune();
         if(op==1){
-            medicService(listaMedici);
+            medicService(medicArrayList);
         }else if(op==2 ){
             clientService(listaClienti);
         }else if(op==3){
-            programareService(listaProgramari);
+            programareService(programariHashMap);
         }else{
             System.out.println("Introduceti o optiune valida");
         }

@@ -57,7 +57,7 @@ public class Oftalmolog extends Medic{
         return Objects.hash(super.hashCode(), getOrganVizat());
     }
     private String eChirurg(){
-        if(this.chirurgie == Boolean.TRUE)
+        if(this.chirurgie == true)
             return " Acest medic se ocupa si de partea de chirurgie.";
         return "";
     }
@@ -65,7 +65,7 @@ public class Oftalmolog extends Medic{
     @Override
     public String toString() {
         return super.toString()+" Acest medic oftalmolog se ocupa de " + organVizat  +
-                ", durata onsultatiei este de " + durataConsultatie +
+                ", durata consultatiei este de " + durataConsultatie +
                 " minute." + eChirurg();
     }
 }

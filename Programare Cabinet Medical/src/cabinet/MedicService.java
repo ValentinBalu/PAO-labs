@@ -1,5 +1,9 @@
 package cabinet;
+import cabinet.readwriteservice.WriteService;
+
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.Scanner;
 import java.util.concurrent.LinkedBlockingDeque;
 
@@ -14,31 +18,35 @@ public class MedicService {
         System.out.println("4.Eliminare Medic");
     }
 
-    public static void afisareListMedici(Medic[] listaMedici){
+    public static void afisareListMedici(ArrayList<Medic> medicArrayList){
         System.out.println("Lista tuturor Medicilor este :");
-        for (Medic medic : listaMedici){
+        for (Medic medic : medicArrayList){
             System.out.println(medic.toString());
         }
+
+        //afisez in istoric
+        WriteService.writeIstoric("afisareListaMedici",true);
+
     }
 
-    public static void afisareListaMediciSpecialitate(Medic[] listaMedici, String specialitate){
+    public static void afisareListaMediciSpecialitate(ArrayList<Medic> medicArrayList, String specialitate){
         System.out.println("Lista Medicilor cu specialitatea "+specialitate +" :");
-        for(Medic medic : listaMedici){
+        int ok=1;
+        for(Medic medic : medicArrayList){
             if(medic.getSpecialitate().equals(specialitate)){
                 System.out.println(medic.toString());
+                ok=0;
             }
         }
+        if(ok==1){
+            System.out.println("Nu exista niciun medic cu aceasta specialitate!");
+        }
+
+        //afisez in istoric
+        WriteService.writeIstoric("afisareListaMediciSpecialitate",true);
     }
 
-    public static Medic[] addMedic(Medic[] listaMedici,Medic medic){
-        Medic[] newListaMedici = new Medic[listaMedici.length+1];
-        for(int i =0;i <listaMedici.length;i++)
-            newListaMedici[i] = listaMedici[i];
-        newListaMedici[listaMedici.length] = medic;
-        return newListaMedici;
-    }
-
-    public static Medic[] adaugareMedic(Medic[]listaMedici){
+    public static ArrayList<Medic>  adaugareMedic(ArrayList<Medic> medicArrayList){
         System.out.println("Adaugare Medic :");
         Scanner scanner = new Scanner(System.in);
         System.out.println("Intrduceti numele :");
@@ -51,37 +59,46 @@ public class MedicService {
         int tura = scanner.nextInt();
         Medic medic = new Medic(nume,varsta,specialitate,tura);
         System.out.println(medic.toString());
+
         //adaug medicul
-        Medic[] nouListaMedici = addMedic(listaMedici,medic);
-        return nouListaMedici;
+        medicArrayList.add(medic);
+
+        //afisez in istoric
+        WriteService.writeIstoric("adaugareMedic",true);
+
+        return medicArrayList;
     }
 
-    public static Medic[] eliminareMedic(Medic[]listaMedici){
-        Medic[] nouListaMedici = new Medic[listaMedici.length-1];
+    public static ArrayList<Medic>  eliminareMedic(ArrayList<Medic> medicArrayList){
+
         Scanner scanner1 = new Scanner(System.in);
+        MedicService.afisareListMedici(medicArrayList);
+        System.out.println();
         System.out.println("Introduceti numele medicului pe care doriti sa il eliminati :");
         String nume = scanner1.nextLine();
         int index = -1;
         int ok = 1;
-        for(int i=0 ;i < listaMedici.length;i++){
-            if(listaMedici[i].getNume().equals(nume)){
-                index = i;
+        Iterator<Medic> iterator = medicArrayList.iterator();
+        int indexul = 0;
+        while (iterator.hasNext()) {
+            Medic medic = iterator.next();
+            if(medic.getNume().equals(nume)){
+                medicArrayList.remove(indexul);
+                index = indexul;
                 break;
             }
+            indexul+=1;
         }
         if(index == -1){
             ok = 0;
         }
         if(ok == 0){
             System.out.println("Nu s-a gasit acest medic!");
-            return listaMedici;
-        }else {
-            for (int i = 0, j = 0; i < listaMedici.length; i++) {
-                if (i != index) {
-                    nouListaMedici[j++] = listaMedici[i];
-                }
-            }
-            return nouListaMedici;
         }
+
+        //afisez in istoric
+        WriteService.writeIstoric("eliminareMedic",true);
+
+        return medicArrayList;
     }
 }

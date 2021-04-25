@@ -1,5 +1,7 @@
 package cabinet;
 
+import cabinet.exceptions.FileWritingException;
+import cabinet.readwriteservice.WriteService;
 import com.sun.jdi.event.ClassUnloadEvent;
 
 import javax.sound.midi.Soundbank;
@@ -16,11 +18,14 @@ public class ClientService {
         System.out.println("5.Editare varsta Client");
     }
 
-    public static void afisareListaClienti(Client[] listaClienti){
+    public static void afisareListaClienti(Client[] listaClienti) {
         System.out.println("Lista tuturor Clientilor este :");
         for (Client client : listaClienti){
             System.out.println(client.toString());
         }
+
+        //afisez in istoric
+        WriteService.writeIstoric("afisareListaClienti",true);
     }
 
     public static void afisareListaCopii(Client[] listaClienti){
@@ -30,6 +35,9 @@ public class ClientService {
                 System.out.println(client.toString());
             }
         }
+
+        //afisez in istoric
+        WriteService.writeIstoric("afisareListaCopii",true);
     }
 
     public static void afisareListaAdulti(Client[] listaClienti){
@@ -39,6 +47,9 @@ public class ClientService {
                 System.out.println(client.toString());
             }
         }
+
+        //afisez in istoric
+        WriteService.writeIstoric("afisareListaAdulti",true);
     }
 
     public static Client[] addClient(Client[] listaClienti,Client client){
@@ -73,6 +84,10 @@ public class ClientService {
         System.out.println(client.toString());
         //adaug clientul
         Client[] nouListaCleinti= addClient(listaClienti,client);
+
+        //afisez in istoric
+        WriteService.writeIstoric("adaugareClienti",true);
+
         return nouListaCleinti;
     }
 
@@ -88,6 +103,10 @@ public class ClientService {
                 break;
             }
         }
+
+        //afisez in istoric
+        WriteService.writeIstoric("editareVarstaClient",true);
+
         return listaClienti;
     }
 }

@@ -1,7 +1,12 @@
 package cabinet;
 
+import cabinet.readwriteservice.WriteService;
+
 import javax.sound.midi.Soundbank;
+import javax.sound.sampled.Port;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class ProgramareService {
@@ -14,22 +19,17 @@ public class ProgramareService {
         System.out.println("4.Anulare Programare");
     }
 
-    public static void afisareListaProgramari(Programare[] listaProgramari){
-        System.out.println("Lista tuturor Programarilor este :");
-        for (Programare programare : listaProgramari){
-            System.out.println(programare.toString());
-        }
+    public static void afisareListaProgramari(Map<Integer,Programare> programariHashMap){
+        System.out.println("Lista tuturor Programarilor este :\n");
+
+        for(Map.Entry<Integer,Programare> pair : programariHashMap.entrySet())
+            System.out.println("programarea "+pair.getKey() + " : "+pair.getValue());
+
+        //afisez in istoric
+        WriteService.writeIstoric("afisareListaProgramari",true);
     }
 
-    public static Programare[] addProgramare(Programare[] listaProgramari,Programare programare){
-        Programare[] newListaProgramari = new Programare[listaProgramari.length+1];
-        for(int i =0;i <listaProgramari.length;i++)
-            newListaProgramari[i] = listaProgramari[i];
-        newListaProgramari[listaProgramari.length] = programare;
-        return newListaProgramari;
-    }
-
-    public static Programare[] adaugareProgramare(Programare[]listaProgramari){
+    public static Map<Integer, Programare> adaugareProgramare(Map<Integer,Programare> programariHashMap){
         System.out.println("Adaugare Programare :");
         Scanner scanner = new Scanner(System.in);
         System.out.println("Intrduceti numele clientului :");
@@ -50,60 +50,59 @@ public class ProgramareService {
         Programare programare = new Programare(nume,data,ora,specialitate,numeleMedicului,cost);
         System.out.println(programare.toString());
         //adaug clientul
-        Programare[] nouListaProgramare= addProgramare(listaProgramari,programare);
-        return nouListaProgramare;
+        Integer k =0;
+        for(Map.Entry<Integer,Programare> pair : programariHashMap.entrySet())
+            k = pair.getKey();
+
+        programariHashMap.put(k+1,programare);
+
+        //afisez in istoric
+        WriteService.writeIstoric("adaugareProgramare",true);
+
+        return programariHashMap;
     }
 
-    public static Programare[] editareProgramare(Programare[]listaProgramare){
-        System.out.println("Introduceti numele persoanei a carei programare doriti sa fie modificata :");
+    public static Map<Integer, Programare> editareProgramare(Map<Integer,Programare> programariHashMap){
+        System.out.println("Introduceti numarul programarii pe care doriti sa o modificati :");
         Scanner scanner =  new Scanner(System.in);
-        String nume = scanner.nextLine();
+        Integer key = scanner.nextInt();
         int ok = 1;
-        for(Programare programare : listaProgramare){
-            if(programare.getNumeClient().equals(nume)){
+        for(Map.Entry<Integer,Programare> pair : programariHashMap.entrySet()){
+            if(key == pair.getKey()) {
                 System.out.println("Introduceti noua data :");
                 String data = scanner.next();
-                programare.setDataProgramare(data);
+                pair.getValue().setDataProgramare(data);
                 System.out.println("Introduceti noua ora :");
                 String ora = scanner.next();
-                programare.setOraProgramare(ora);
+                pair.getValue().setOraProgramare(ora);
+                ok =0;
                 break;
             }
-            ok =0;
         }
-        if(ok == 0 ){
-            System.out.println("Nu s-a gasit nicio programare pe numele acestei persoane!");
+        if(ok == 1 ){
+            System.out.println("Nu s-a gasit nicio programare cu acest numar!");
         }
-        return listaProgramare;
+
+        //afisez in istoric
+        WriteService.writeIstoric("editareProgramare",true);
+
+        return programariHashMap;
     }
 
-    public static Programare[] eliminareProgramare(Programare[]listaProgramari){
-        Programare[] nouListaProgramari = new Programare[listaProgramari.length-1];
+    public static Map<Integer, Programare> eliminareProgramare(Map<Integer,Programare> programariHashMap){
         Scanner scanner1 = new Scanner(System.in);
-        System.out.println("Introduceti numele clientului a carui programare doriti sa o anulati :");
-        String nume = scanner1.nextLine();
-        int index = -1;
-        int ok = 1;
-        for(int i=0 ;i < listaProgramari.length;i++){
-            if(listaProgramari[i].getNumeClient().equals(nume)){
-                index = i;
-                break;
-            }
+        System.out.println("Introduceti numarul programarii pe care doriti sa o anulati :");
+        Integer key = scanner1.nextInt();
+        if (programariHashMap.containsKey(key)){
+            programariHashMap.remove(key);
         }
-        if(index == -1)
-        {
-            ok = 0;
-        }
-        if(ok == 0){
+        else {
             System.out.println("Nu s-a gasit nicio programare pe numele acestei persoane!");
-            return listaProgramari;
-        }else {
-            for (int i = 0, j = 0; i < listaProgramari.length; i++) {
-                if (i != index) {
-                    nouListaProgramari[j++] = listaProgramari[i];
-                }
-            }
-            return nouListaProgramari;
         }
+
+        //afisez in istoric
+        WriteService.writeIstoric("eliminareProgramare",true);
+
+        return programariHashMap;
     }
 }

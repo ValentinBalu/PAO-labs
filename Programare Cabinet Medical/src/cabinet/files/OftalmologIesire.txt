@@ -1,0 +1,3 @@
+Medicul Aurora Breazu, cu varsta de 37 ani, are specialitatea de oftalmologie si lucreaza in tura 1. Acest medic oftalmolog se ocupa de ochi, durata consultatiei este de 100 minute.
+Medicul Andrei Zuhalcescu, cu varsta de 45 ani, are specialitatea de oftalmologie si lucreaza in tura 2. Acest medic oftalmolog se ocupa de ochi, durata consultatiei este de 45 minute. Acest medic se ocupa si de partea de chirurgie.
+Medicul Miruna Crintea, cu varsta de 59 ani, are specialitatea de oftalmologie si lucreaza in tura 2. Acest medic oftalmolog se ocupa de ochi, durata consultatiei este de 50 minute. Acest medic se ocupa si de partea de chirurgie.

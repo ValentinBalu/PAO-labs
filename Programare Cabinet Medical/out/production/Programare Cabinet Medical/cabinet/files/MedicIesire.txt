@@ -1,0 +1,11 @@
+Medicul Elena Mateoniu, cu varsta de 37 ani, are specialitatea de pneumologie si lucreaza in tura 2.
+Medicul Aurora Breazu, cu varsta de 37 ani, are specialitatea de oftalmologie si lucreaza in tura 1. Acest medic oftalmolog se ocupa de ochi, durata consultatiei este de 100 minute.
+Medicul Lavinia Bustean, cu varsta de 41 ani, are specialitatea de cardiologie si lucreaza in tura 2. Acest medic cardiolog se ocupa de inima, durata onsultatiei este de 60 minute. Are un numar de 171 de operatii reusite.
+Medicul Albert Grizeanu, cu varsta de 41 ani, are specialitatea de estetica si lucreaza in tura 2.
+Medicul Andrei Zuhalcescu, cu varsta de 45 ani, are specialitatea de oftalmologie si lucreaza in tura 2. Acest medic oftalmolog se ocupa de ochi, durata consultatiei este de 45 minute. Acest medic se ocupa si de partea de chirurgie.
+Medicul Mirabela Dobrescu, cu varsta de 49 ani, are specialitatea de radiologie si lucreaza in tura 2.
+Medicul Ioana Manoiu, cu varsta de 56 ani, are specialitatea de ORL si lucreaza in tura 2.
+Medicul Denis Stamatescu, cu varsta de 57 ani, are specialitatea de endocrinologie si lucreaza in tura 1.
+Medicul Miruna Crintea, cu varsta de 59 ani, are specialitatea de oftalmologie si lucreaza in tura 2. Acest medic oftalmolog se ocupa de ochi, durata consultatiei este de 50 minute. Acest medic se ocupa si de partea de chirurgie.
+Medicul Marius Zaharia, cu varsta de 61 ani, are specialitatea de cardiologie si lucreaza in tura 1. Acest medic cardiolog se ocupa de inima, durata onsultatiei este de 60 minute. Are un numar de 198 de operatii reusite.
+Medicul Aurelian Ciobotaru, cu varsta de 61 ani, are specialitatea de urologie si lucreaza in tura 1.

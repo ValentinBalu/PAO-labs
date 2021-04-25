@@ -1,0 +1,2 @@
+Miruna Crintea,59,oftalmologie,2,ochi,50,True
+Aurora Breazu,37,oftalmologie,1,ochi,100,False

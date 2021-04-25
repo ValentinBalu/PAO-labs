@@ -1,0 +1,5 @@
+Mirabela Dobrescu,49,radiologie,2
+Aurelian Ciobotaru,61,urologie,1
+Denis Stamatescu,57,endocrinologie,1
+Elena Mateoniu,37,pneumologie,2
+Albert Grizeanu,41,estetica,2

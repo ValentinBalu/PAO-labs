@@ -1,0 +1,6 @@
+Clientul Alex Radoi, cu CNP-ul : 5987612345612, cu varsta de 45 ani, sex : M, are urmatoarele simptome : [tuse puternica, dureri in gat].
+Clientul Ana Balutoiu, cu CNP-ul : 6987612786543, cu varsta de 9 ani, sex : F, are urmatoarele simptome : [febra, tuse]. Pacientul este un copil si are urmatoarele vaccinuri : [Tetramune,  vaccin antipolio].
+Clientul Giacomo Runceanu, cu CNP-ul : 2001456782990, cu varsta de 41 ani, sex : M, are urmatoarele simptome : [discomfort dorsal, dureri articulare].
+Clientul Ion Popescu, cu CNP-ul : 5001122345678, cu varsta de 34 ani, sex : M, are urmatoarele simptome : [nas indufndat, tuse productiva].
+Clientul Maria Badescu, cu CNP-ul : 6812312980087, cu varsta de 23 ani, sex : F, are urmatoarele simptome : [dureri de burta, migrene].
+Clientul Viorel Georgescu, cu CNP-ul : 5123456781345, cu varsta de 56 ani, sex : M, are urmatoarele simptome : [maini reci, nas umed].Pacientul este un adult si are urmatoarele afectiuni cunoscute : [diabet, pancreatita]. Totodata, acesta a avut reactii adverse la urmatoarele medicamente : [Xyzal]. Mentionam ca acest pacient a fost vaccinat importiva Covid19.

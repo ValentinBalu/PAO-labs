@@ -1,0 +1,3 @@
+Alex Radoi,9/3/2021,15:40,cardiologie,Marius Zaharia,150
+Maria Badescu,23/4/2021,11:20,generala,Ana Brailoiu,200
+Giacomo Runceanu,17/11/2021,17:20,endocrinologie,Denis Stamatescu,175
