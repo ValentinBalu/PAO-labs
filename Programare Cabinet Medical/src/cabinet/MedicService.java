@@ -1,5 +1,7 @@
 package cabinet;
 import cabinet.readwriteservice.WriteService;
+import cabinet.repository.ClientRepository;
+import cabinet.repository.MedicRepository;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,6 +18,7 @@ public class MedicService {
         System.out.println("2.Afisare Lista Medici cu o anumita specialitate");
         System.out.println("3.Adaugare Medic");
         System.out.println("4.Eliminare Medic");
+        System.out.println("5.Editare tura Medic");
     }
 
     public static void afisareListMedici(ArrayList<Medic> medicArrayList){
@@ -62,6 +65,8 @@ public class MedicService {
 
         //adaug medicul
         medicArrayList.add(medic);
+        MedicRepository medicRepository = new MedicRepository();
+        medicRepository.insertMedic(medic);
 
         //afisez in istoric
         WriteService.writeIstoric("adaugareMedic",true);
@@ -69,36 +74,59 @@ public class MedicService {
         return medicArrayList;
     }
 
-    public static ArrayList<Medic>  eliminareMedic(ArrayList<Medic> medicArrayList){
+    public static void  eliminareMedic(){
+//
+//        Scanner scanner1 = new Scanner(System.in);
+//        MedicService.afisareListMedici(medicArrayList);
+//        System.out.println();
+//        System.out.println("Introduceti numele medicului pe care doriti sa il eliminati :");
+//        String nume = scanner1.nextLine();
+//        int index = -1;
+//        int ok = 1;
+//        Iterator<Medic> iterator = medicArrayList.iterator();
+//        int indexul = 0;
+//        while (iterator.hasNext()) {
+//            Medic medic = iterator.next();
+//            if(medic.getNume().equals(nume)){
+//                medicArrayList.remove(indexul);
+//                index = indexul;
+//                break;
+//            }
+//            indexul+=1;
+//        }
+//        if(index == -1){
+//            ok = 0;
+//        }
+//        if(ok == 0){
+//            System.out.println("Nu s-a gasit acest medic!");
+//        }
 
-        Scanner scanner1 = new Scanner(System.in);
-        MedicService.afisareListMedici(medicArrayList);
-        System.out.println();
-        System.out.println("Introduceti numele medicului pe care doriti sa il eliminati :");
-        String nume = scanner1.nextLine();
-        int index = -1;
-        int ok = 1;
-        Iterator<Medic> iterator = medicArrayList.iterator();
-        int indexul = 0;
-        while (iterator.hasNext()) {
-            Medic medic = iterator.next();
-            if(medic.getNume().equals(nume)){
-                medicArrayList.remove(indexul);
-                index = indexul;
-                break;
-            }
-            indexul+=1;
-        }
-        if(index == -1){
-            ok = 0;
-        }
-        if(ok == 0){
-            System.out.println("Nu s-a gasit acest medic!");
-        }
+        System.out.println("Introdceti id-ul medicului pe care doriti sa il eliminati :");
+        Scanner scanner = new Scanner(System.in);
+        int id = scanner.nextInt();
+
+        MedicRepository medicRepository = new MedicRepository();
+        medicRepository.deleteMedic(id);
 
         //afisez in istoric
         WriteService.writeIstoric("eliminareMedic",true);
 
-        return medicArrayList;
+//        return medicArrayList;
+    }
+
+    public static void editareTuraMedic(){
+
+        System.out.println("Introduceti id-ul medicului caruia doriti sa ii modificati tura :");
+        Scanner scanner =  new Scanner(System.in);
+        int id = scanner.nextInt();
+        System.out.println("Introduceti noua tura :");
+        int tura = scanner.nextInt();
+
+        MedicRepository medicRepository = new MedicRepository();
+        medicRepository.updateTuraAge(id,tura);
+
+        //afisez in istoric
+        WriteService.writeIstoric("editareTuraMedic",true);
+
     }
 }

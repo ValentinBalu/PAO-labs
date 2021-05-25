@@ -1,9 +1,14 @@
 package com.company;
 
 import cabinet.*;
+import cabinet.config.DatabaseConfiguration;
 import cabinet.exceptions.FileWritingException;
 import cabinet.readwriteservice.ReadService;
 import cabinet.readwriteservice.WriteService;
+import cabinet.repository.ClientRepository;
+import cabinet.repository.MedicRepository;
+import cabinet.repository.OftalmologRepository;
+import cabinet.repository.ProgramareRepository;
 
 import javax.sound.sampled.Port;
 import javax.swing.plaf.basic.BasicRadioButtonMenuItemUI;
@@ -16,10 +21,17 @@ public class Main {
         MedicService.afisareMeniu();
         Scanner scannerul = new Scanner(System.in);
         System.out.println();
+        MedicRepository medicRepository = new MedicRepository();
+
         System.out.println("Alegeti o optiune :");
         int op = scannerul.nextInt();
         if(op==1){
-            MedicService.afisareListMedici(medicArrayList);
+            //MedicService.afisareListMedici(medicArrayList);
+
+            ArrayList<Medic> medics = medicRepository.getAllMedics();
+            for (Medic medic : medics) {
+                System.out.println(medic.toString());
+            }
         }else if(op==2){
             System.out.println("Introduceti denumirea specialitatii : ");
             String specialitatea = scannerul.next();
@@ -28,11 +40,41 @@ public class Main {
             medicArrayList = MedicService.adaugareMedic(medicArrayList);
             MedicService.afisareListMedici(medicArrayList);
         }else if(op == 4) {
-            medicArrayList = MedicService.eliminareMedic(medicArrayList);
-            MedicService.afisareListMedici(medicArrayList);
-        } else{
+//            medicArrayList = MedicService.eliminareMedic(medicArrayList);
+//            MedicService.afisareListMedici(medicArrayList);
+            MedicService.eliminareMedic();
+        }else if (op==5) {
+            MedicService.editareTuraMedic();
+        }else {
             System.out.println("Introduceti o optiune valida!");
             medicService(medicArrayList);
+        }
+        System.out.println();
+
+    }
+
+    public static void oftalmologService(){
+        OftalmologService.afisareMeniu();
+        Scanner scannerul = new Scanner(System.in);
+        System.out.println();
+        System.out.println("Alegeti o optiune :");
+
+        int op = scannerul.nextInt();
+        OftalmologRepository oftalmologRepository = new OftalmologRepository();
+
+        if(op==1){
+           ArrayList<Oftalmolog> oftalmologs = oftalmologRepository.getAllOfts();
+            for (Oftalmolog oftalmolog : oftalmologs) {
+                System.out.println(oftalmolog.toString());
+            }
+        }else if(op==2){
+            OftalmologService.adaugareOftalmolog();
+        }else if (op == 3){
+            OftalmologService.editareDurataConsultatieOft();
+        }else if(op == 4) {
+            OftalmologService.eliminareOftalmolog();
+        } else{
+            System.out.println("Introduceti o optiune valida!");
         }
         System.out.println();
 
@@ -44,19 +86,29 @@ public class Main {
         System.out.println();
         System.out.println("Alegeti o optiune :");
         int op = scannerul.nextInt();
+        ClientRepository clientRepository = new ClientRepository();
         if(op==1){
-            ClientService.afisareListaClienti(listaClienti);
+            //ClientService.afisareListaClienti(listaClienti);
+            ArrayList<Client> clients = clientRepository.getAllClients();
+            for (Client client : clients) {
+                System.out.println(client.toString());
+            }
+
         }else if(op==2){
             ClientService.afisareListaCopii(listaClienti);
         }else if (op == 3){
             ClientService.afisareListaAdulti(listaClienti);
         }else if(op == 4) {
             listaClienti = ClientService.adaugareClient(listaClienti);
-            ClientService.afisareListaClienti(listaClienti);
+            //ClientService.afisareListaClienti(listaClienti);
         }else if(op == 5) {
-            listaClienti = ClientService.editareVarstaClient(listaClienti);
-            ClientService.afisareListaClienti(listaClienti);
-        }else {
+            //listaClienti = ClientService.editareVarstaClient(listaClienti);
+            //ClientService.afisareListaClienti(listaClienti);
+            ClientService.editareVarstaClient();
+        }else if (op==6) {
+            ClientService.eliminareClient();
+        }else
+        {
             System.out.println("Introduceti o optiune valida!");
             clientService(listaClienti);
         }
@@ -68,19 +120,29 @@ public class Main {
         ProgramareService.afisareMeniu();
         Scanner scannerul = new Scanner(System.in);
         System.out.println();
+        ProgramareRepository programareRepository = new ProgramareRepository();
+
         System.out.println("Alegeti o optiune :");
         int op = scannerul.nextInt();
         if(op==1){
-            ProgramareService.afisareListaProgramari(programariHashMap);
+            //ProgramareService.afisareListaProgramari(programariHashMap);
+
+            ArrayList<Programare> programares = programareRepository.getAllProgs();
+            for (Programare programare : programares) {
+                System.out.println(programare);
+            }
+
         }else if(op==2){
             programariHashMap = ProgramareService.adaugareProgramare(programariHashMap);
             ProgramareService.afisareListaProgramari(programariHashMap);
         }else if (op == 3){
-            programariHashMap = ProgramareService.editareProgramare(programariHashMap);
-            ProgramareService.afisareListaProgramari(programariHashMap);
+//            programariHashMap = ProgramareService.editareProgramare(programariHashMap);
+//            ProgramareService.afisareListaProgramari(programariHashMap);
+            ProgramareService.editareProgramare();
         }else if(op == 4) {
-            programariHashMap = ProgramareService.eliminareProgramare(programariHashMap);
-            ProgramareService.afisareListaProgramari(programariHashMap);
+//            programariHashMap = ProgramareService.eliminareProgramare(programariHashMap);
+//            ProgramareService.afisareListaProgramari(programariHashMap);
+            ProgramareService.anulareProgramare();
         } else{
             System.out.println("Introduceti o optiune valida!");
             programareService(programariHashMap);
@@ -94,6 +156,7 @@ public class Main {
         System.out.println("1.Servicii pentru Medici");
         System.out.println("2.Servicii pentru Clienti");
         System.out.println("3.Servicii pentru Programari");
+        System.out.println("4.Servicii pentru Oftalmologi");
         System.out.println("Selectati optiunea :");
         int op = scanner.nextInt();
         return op;
@@ -122,10 +185,10 @@ public class Main {
         Cardiolog cardiolog2 = new Cardiolog("Lavinia Bustean",41 , "cardiologie",2,"inima",60,(short)171);
         //System.out.println(cardiolog2.toString());
 
-        Programare programare1 = new Programare("Cristian Popescu","12/3/2021","15:23","cardiologie","Marius Zaharia",150);
+        Programare programare1 = new Programare("Cristian Popescu","12/3/2021","15:23","cardiologie","Marius Zaharia",150,1,1);
         //System.out.println(programare1.toString());
 
-        Programare programare2 = new Programare("Ana Balutoiu","29/04/2021","14:50","oftalmologie","Andrei Zuhalcescu",200);
+        Programare programare2 = new Programare("Ana Balutoiu","29/04/2021","14:50","oftalmologie","Andrei Zuhalcescu",200,1,1);
         //System.out.println(programare2.toString());
 
         //CLIENT
@@ -206,6 +269,42 @@ public class Main {
         //scriu datele programarilor in fisier
         WriteService.writeProgramare(programariHashMap,false);
 
+        //Database handling
+
+        //creating tables
+        ProgramareRepository programareRepository = new ProgramareRepository();
+        programareRepository.createTable();
+
+        ClientRepository clientRepository = new ClientRepository();
+        clientRepository.createTable();
+
+        MedicRepository medicRepository = new MedicRepository();
+        medicRepository.createTable();
+
+        OftalmologRepository oftalmologRepository = new OftalmologRepository();
+        oftalmologRepository.createTable();
+
+//        clientRepository.insertClient(client1);
+//        Client insertedClient = clientRepository.getClientById(1);
+//        System.out.println(insertedClient.toString());
+
+//        medicRepository.insertMedic(medic1);
+//        Medic insertedMedic = medicRepository.getMedicById(1);
+//        System.out.println(insertedMedic.toString());
+
+//        oftalmologRepository.insertOftalmolog(oftalmolog1);
+//        Oftalmolog insertedOftalmolog = oftalmologRepository.getOftalmologById(1);
+//        System.out.println(insertedOftalmolog.toString());
+//
+
+//        programareRepository.insertProgramare(programare1);
+//        Programare insertedProg1 = programareRepository.getProgramareById(1);
+//        System.out.println(insertedProg1.toString());
+//
+//        programareRepository.insertProgramare(programare2);
+//        Programare insertedProg2 = programareRepository.getProgramareById(2);
+//        System.out.println(insertedProg2.toString());
+
 
         //Handling services
         int op = optiune();
@@ -215,8 +314,16 @@ public class Main {
             clientService(listaClienti);
         }else if(op==3){
             programareService(programariHashMap);
-        }else{
+        }else if(op==4){
+            oftalmologService();
+        }
+        else{
             System.out.println("Introduceti o optiune valida");
         }
+
+
+
+        DatabaseConfiguration.closeDatabaseConnection();
+
     }
 }

@@ -3,6 +3,8 @@ package cabinet;
 import java.util.Objects;
 
 public class Medic implements Comparable<Medic> {
+    private  int idMedic;
+
     private String nume;
 
     private int varsta;
@@ -15,10 +17,19 @@ public class Medic implements Comparable<Medic> {
     }
 
     public Medic(String nume,int varsta, String specialitate,int tura) {
+        this.idMedic = 0;
         this.nume = nume;
         this.varsta = varsta;
         this.specialitate = specialitate;
         this.tura = tura;
+    }
+
+    public int getIdMedic() {
+        return idMedic;
+    }
+
+    public void setIdMedic(int idMedic) {
+        this.idMedic = idMedic;
     }
 
     public String getNume() {

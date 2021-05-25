@@ -2,6 +2,7 @@ package cabinet;
 
 import cabinet.exceptions.FileWritingException;
 import cabinet.readwriteservice.WriteService;
+import cabinet.repository.ClientRepository;
 import com.sun.jdi.event.ClassUnloadEvent;
 
 import javax.sound.midi.Soundbank;
@@ -16,6 +17,7 @@ public class ClientService {
         System.out.println("3.Afisare Lista Clienti Adulti");
         System.out.println("4.Adaugare Client");
         System.out.println("5.Editare varsta Client");
+        System.out.println("6.Eliminare Client");
     }
 
     public static void afisareListaClienti(Client[] listaClienti) {
@@ -85,28 +87,48 @@ public class ClientService {
         //adaug clientul
         Client[] nouListaCleinti= addClient(listaClienti,client);
 
+        ClientRepository clientRepository = new ClientRepository();
+        clientRepository.insertClient(client);
+
         //afisez in istoric
         WriteService.writeIstoric("adaugareClienti",true);
 
         return nouListaCleinti;
     }
 
-    public static Client[] editareVarstaClient(Client[]listaClienti){
-        System.out.println("Introduceti CNP-ul persoanei careia doriti sa ii modificati varsta :");
+    public static void editareVarstaClient(){
+//        System.out.println("Introduceti CNP-ul persoanei careia doriti sa ii modificati varsta :");
+//        Scanner scanner =  new Scanner(System.in);
+//        String cnp = scanner.nextLine();
+//        for(Client client : listaClienti){
+//            if(client.getCnp().equals(cnp)){
+//                System.out.println("Introduceti noua varsta :");
+//                int varsta = scanner.nextInt();
+//                client.setVarsta(varsta);
+//                break;
+//            }
+//        }
+        System.out.println("Introduceti id-ul persoanei careia doriti sa ii modificati varsta :");
         Scanner scanner =  new Scanner(System.in);
-        String cnp = scanner.nextLine();
-        for(Client client : listaClienti){
-            if(client.getCnp().equals(cnp)){
-                System.out.println("Introduceti noua varsta :");
-                int varsta = scanner.nextInt();
-                client.setVarsta(varsta);
-                break;
-            }
-        }
+        int id = scanner.nextInt();
+        System.out.println("Introduceti noua varsta :");
+        int varsta = scanner.nextInt();
+
+        ClientRepository clientRepository = new ClientRepository();
+        clientRepository.updateClientAge(id,varsta);
 
         //afisez in istoric
         WriteService.writeIstoric("editareVarstaClient",true);
 
-        return listaClienti;
+//        return listaClienti;
+    }
+
+    public static void eliminareClient(){
+        System.out.println("Introdceti id-ul clientului pe care doriti sa il eliminati :");
+        Scanner scanner = new Scanner(System.in);
+        int id = scanner.nextInt();
+
+        ClientRepository clientRepository = new ClientRepository();
+        clientRepository.deleteClient(id);
     }
 }

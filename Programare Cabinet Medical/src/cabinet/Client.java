@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public class Client {
+    private int idClient;
+
     private String nume;
 
     private String cnp;
@@ -18,11 +20,20 @@ public class Client {
     }
 
     public Client(String nume , String cnp, int varsta, char sex, String[] simptome) {
+        this.idClient = 0;
         this.nume = nume;
         this.cnp = cnp;
         this.varsta = varsta;
         this.sex = sex;
         this.simptome = simptome;
+    }
+
+    public int getIdClient() {
+        return idClient;
+    }
+
+    public void setIdClient(int idClient) {
+        this.idClient = idClient;
     }
 
     public String getNume() {

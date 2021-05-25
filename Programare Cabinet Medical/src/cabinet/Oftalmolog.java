@@ -3,6 +3,8 @@ package cabinet;
 import java.util.Objects;
 
 public class Oftalmolog extends Medic{
+    private int idOftalmolog;
+
     private String organVizat;
 
     private int durataConsultatie;
@@ -14,6 +16,7 @@ public class Oftalmolog extends Medic{
 
     public Oftalmolog(String nume, int varsta, String specialitate, int tura, String organVizat,int durataConsultatie,Boolean chirurgie) {
         super(nume, varsta, specialitate, tura);
+        this.idOftalmolog = 0;
         this.organVizat = organVizat;
         this.durataConsultatie = durataConsultatie;
         this.chirurgie = chirurgie;
